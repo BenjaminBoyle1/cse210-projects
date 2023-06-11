@@ -9,9 +9,6 @@ class Program
         int userNumber = PromptUserNumber();
         int squareNumber = SquareNumber(userNumber);
         DisplayResult(userName, squareNumber);
-
-
-
     }
 
     static void DisplayWelcomeMessage()
