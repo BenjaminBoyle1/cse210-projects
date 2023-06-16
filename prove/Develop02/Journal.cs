@@ -34,7 +34,9 @@ public class Journal
         {
             foreach (Entry entry in entries)
             {
-                writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
+                writer.WriteLine($"{QuoteCSV(entry.Date)}," +
+                    $"{QuoteCSV(entry.Prompt)}," +
+                    $"{QuoteCSV(entry.Response)}");
             }
         }
         Console.WriteLine("Journal saved successfully.");
@@ -48,19 +50,39 @@ public class Journal
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                string[] parts = line.Split('|');
+                string[] parts = line.Split(',');
                 if (parts.Length == 3)
                 {
                     Entry entry = new Entry
                     {
-                        Date = parts[0],
-                        Prompt = parts[1],
-                        Response = parts[2]
+                        Date = UnquoteCSV(parts[0]),
+                        Prompt = UnquoteCSV(parts[1]),
+                        Response = UnquoteCSV(parts[2])
                     };
                     entries.Add(entry);
                 }
             }
         }
         Console.WriteLine("Journal loaded successfully.");
+    }
+
+    private string QuoteCSV(string value)
+    {
+        if (value.Contains(",") || value.Contains("\""))
+        {
+            value = value.Replace("\"", "\"\"");
+            value = $"\"{value}\"";
+        }
+        return value;
+    }
+
+    private string UnquoteCSV(string value)
+    {
+        if (value.StartsWith("\"") && value.EndsWith("\""))
+        {
+            value = value.Substring(1, value.Length - 2);
+            value = value.Replace("\"\"", "\"");
+        }
+        return value;
     }
 }
