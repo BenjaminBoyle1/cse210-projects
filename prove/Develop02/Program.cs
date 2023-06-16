@@ -4,8 +4,8 @@ class Program
 {
     static void Main()
     {
-        Journal journal = new Journal();
-        PromptGenerator promptGenerator = new PromptGenerator();
+        Journal journal = new();
+        PromptGenerator promptGenerator = new();
 
         while (true)
         {
