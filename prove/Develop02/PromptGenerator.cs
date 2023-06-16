@@ -2,12 +2,12 @@ using System;
 
 public class PromptGenerator
 {
-    private string[] prompts;
-    private Random random;
+    private string[] _prompts;
+    private Random _random;
 
     public PromptGenerator()
     {
-        prompts = new string[]
+        _prompts = new string[]
         {
             "Who was the most interesting person I interacted with today?",
             "What was the best part of my day?",
@@ -15,11 +15,11 @@ public class PromptGenerator
             "What was the strongest emotion I felt today?",
             "If I had one thing I could do over today, what would it be?"
         };
-        random = new Random();
+        _random = new Random();
     }
 
     public string GeneratePrompt()
     {
-        return prompts[random.Next(prompts.Length)];
+        return _prompts[_random.Next(_prompts.Length)];
     }
 }

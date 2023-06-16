@@ -4,22 +4,22 @@ using System.IO;
 
 public class Journal
 {
-    private List<Entry> entries;
+    private List<Entry> _entries;
 
     public Journal()
     {
-        entries = new List<Entry>();
+        _entries = new List<Entry>();
     }
 
     public void AddEntry(string prompt, string response, string date)
     {
         Entry entry = new Entry { Prompt = prompt, Response = response, Date = date };
-        entries.Add(entry);
+        _entries.Add(entry);
     }
 
     public void DisplayEntries()
     {
-        foreach (Entry entry in entries)
+        foreach (Entry entry in _entries)
         {
             Console.WriteLine($"Date: {entry.Date}");
             Console.WriteLine($"Prompt: {entry.Prompt}");
@@ -32,7 +32,7 @@ public class Journal
     {
         using (StreamWriter writer = new StreamWriter(filename))
         {
-            foreach (Entry entry in entries)
+            foreach (Entry entry in _entries)
             {
                 writer.WriteLine($"{QuoteCSV(entry.Date)}," +
                     $"{QuoteCSV(entry.Prompt)}," +
@@ -44,7 +44,7 @@ public class Journal
 
     public void LoadFromFile(string filename)
     {
-        entries.Clear();
+        _entries.Clear();
         using (StreamReader reader = new StreamReader(filename))
         {
             string line;
@@ -59,7 +59,7 @@ public class Journal
                         Prompt = UnquoteCSV(parts[1]),
                         Response = UnquoteCSV(parts[2])
                     };
-                    entries.Add(entry);
+                    _entries.Add(entry);
                 }
             }
         }

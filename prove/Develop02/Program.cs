@@ -14,6 +14,7 @@ class Program
             Console.WriteLine("3. Save the journal to a file");
             Console.WriteLine("4. Load the journal from a file");
             Console.WriteLine("5. Exit");
+
             Console.Write("Enter your choice: ");
             int choice = int.Parse(Console.ReadLine());
 
@@ -22,12 +23,12 @@ class Program
             if (choice == 1)
             {
                 string prompt = promptGenerator.GeneratePrompt();
-                Console.WriteLine("Prompt: " + prompt);
+                Console.WriteLine($"Prompt: {prompt}");
                 Console.Write("Response: ");
                 string response = Console.ReadLine();
-                string date = DateTime.Now.ToString("MM/dd/yyyy");
+                string date = DateTime.Now.ToString();
+
                 journal.AddEntry(prompt, response, date);
-                Console.WriteLine("Entry added successfully.");
             }
             else if (choice == 2)
             {

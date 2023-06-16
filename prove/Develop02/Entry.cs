@@ -4,3 +4,4 @@ public class Entry
     public string Response { get; set; }
     public string Date { get; set; }
 }
+
