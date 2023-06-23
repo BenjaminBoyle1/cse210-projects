@@ -1,16 +1,14 @@
 class Word
 {
-    public string Text { get; }
-    public bool IsHidden { get; private set; }
+    private string wordText;
 
-    public Word(string text)
+    public Word(string wordText)
     {
-        this.Text = text;
-        this.IsHidden = false;
+        this.wordText = wordText;
     }
 
-    public void Hide()
+    public string GetWordText()
     {
-        this.IsHidden = true;
+        return wordText;
     }
 }

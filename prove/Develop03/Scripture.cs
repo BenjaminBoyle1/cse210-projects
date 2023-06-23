@@ -1,28 +1,44 @@
+using System;
+using System.Collections.Generic;
+
 class Scripture
 {
-    private string reference;
-    private List<string> words;
+    private Reference reference;
+    private List<Word> words;
     private List<int> hiddenIndices;
 
-    public Scripture(string reference, string text)
+    public Scripture(Reference reference, string scriptureText)
     {
         this.reference = reference;
-        this.words = text.Split(' ').ToList();
+        this.words = ParseScriptureText(scriptureText);
         this.hiddenIndices = new List<int>();
+    }
+
+    private List<Word> ParseScriptureText(string scriptureText)
+    {
+        string[] wordArray = scriptureText.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        List<Word> wordList = new List<Word>();
+
+        foreach (string word in wordArray)
+        {
+            wordList.Add(new Word(word));
+        }
+
+        return wordList;
     }
 
     public string GetDisplayText()
     {
-        string displayText = $"{reference} - ";
+        string displayText = $"{reference.GetReferenceText()} - ";
         for (int i = 0; i < words.Count; i++)
         {
             if (hiddenIndices.Contains(i))
             {
-                displayText += "___ ";
+                displayText += "____ ";
             }
             else
             {
-                displayText += $"{words[i]} ";
+                displayText += $"{words[i].GetWordText()} ";
             }
         }
         return displayText;
@@ -31,8 +47,15 @@ class Scripture
     public void HideRandomWords(int count)
     {
         Random random = new Random();
-        List<int> availableIndices = Enumerable.Range(0, words.Count).ToList();
-        availableIndices = availableIndices.Except(hiddenIndices).ToList();
+        List<int> availableIndices = new List<int>();
+
+        for (int i = 0; i < words.Count; i++)
+        {
+            if (!hiddenIndices.Contains(i))
+            {
+                availableIndices.Add(i);
+            }
+        }
 
         int wordsToHide = Math.Min(count, availableIndices.Count);
 
