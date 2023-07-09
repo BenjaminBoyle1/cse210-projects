@@ -1,3 +1,0 @@
-2500 points
-Level: 2
-ChecklistGoal:Run,250,10,4,4000
