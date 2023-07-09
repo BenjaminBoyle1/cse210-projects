@@ -1,0 +1,2 @@
+0 points
+ChecklistGoal:run,100,12,1000,0

@@ -1,0 +1,4 @@
+0 points
+ChecklistGoal:Run,100,12,1000,0
+SimpleGoal:Temple,1000
+EternalGoal:Study the Scriptures,100
