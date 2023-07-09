@@ -1,3 +1,0 @@
-0 points
-Level:1
-ChecklistGoal:Run,100,12,10000,0
