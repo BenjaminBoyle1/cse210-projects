@@ -1,5 +1,0 @@
-2000 points
-Level:3
-SimpleGoal:Run,100
-ChecklistGoal:Read the scriptures,100,10,0,1000
-EternalGoal:Temple,1000
