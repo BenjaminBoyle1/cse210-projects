@@ -5,24 +5,29 @@ public class Video
     public string Title { get; set; }
     public string Author { get; set; }
     public int Length { get; set; }
-    public List<Comment> Comments { get; set; }
+    private List<Comment> _comments;
 
     public Video(string title, string author, int length)
     {
         Title = title;
         Author = author;
         Length = length;
-        Comments = new List<Comment>();
+        _comments = new List<Comment>();
     }
 
     public void AddComment(string commenterName, string text)
     {
         Comment comment = new Comment { CommenterName = commenterName, Text = text };
-        Comments.Add(comment);
+        _comments.Add(comment);
     }
 
     public int GetCommentCount()
     {
-        return Comments.Count;
+        return _comments.Count;
+    }
+
+    public List<Comment> Comments
+    {
+        get { return _comments; }
     }
 }
